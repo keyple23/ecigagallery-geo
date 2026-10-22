@@ -20,7 +20,26 @@ export default function Home() {
         <p className="lead">
           {site.mainKeyword} 매장을 찾고 있다면 전자담배갤러리 안산 매장 3곳을 확인해 보세요. 중앙역 2번 출구의 본점,
           상록수역 3번 출구의 상록점, 롯데시네마가 있는 대동조이월드 1층의 중앙점까지 위치와 영업시간, 주차, 온라인 주문 여부를 매장별로 정리했습니다.
+          안산 전담 가게나 액상 전자담배 매장을 찾는 분도 아래에서 가까운 곳을 고르면 됩니다.
         </p>
+      </section>
+
+      <section>
+        <h2>안산 지역·역별 가까운 전자담배 매장</h2>
+        <div className="tablewrap">
+          <table className="cmp">
+            <thead>
+              <tr><th>지역·역</th><th>가까운 매장</th><th>참고</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>중앙역 2번 출구, 고잔역 방향</td><td><Link href="/stores/ansan-bonjeom/">본점</Link></td><td>중앙역 2번 출구 315m</td></tr>
+              <tr><td>고잔동, 안산 단원구</td><td><Link href="/stores/ansan-bonjeom/">본점</Link>, <Link href="/stores/ansan-jungang/">중앙점</Link></td><td>두 매장 모두 단원구</td></tr>
+              <tr><td>중앙역 1번 출구, 중앙동</td><td><Link href="/stores/ansan-jungang/">중앙점</Link></td><td>롯데시네마 센트럴락 건물 1층</td></tr>
+              <tr><td>상록수역, 본오동</td><td><Link href="/stores/ansan-sangnok/">상록점</Link></td><td>상록수역 3번 출구 151m</td></tr>
+              <tr><td>상록구, 차량 방문</td><td><Link href="/stores/ansan-sangnok/">상록점</Link></td><td>공영주차장 옆 건물</td></tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section>

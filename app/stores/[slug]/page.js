@@ -18,6 +18,7 @@ export async function generateMetadata({ params }) {
   return {
     title: { absolute: `${pageTitle(s)} | ${site.siteShort}` },
     description,
+    keywords: [s.keyword, ...(s.subKeywords || [])],
     alternates: { canonical: `/stores/${s.slug}/` },
     openGraph: { title: pageTitle(s), description, url: `/stores/${s.slug}/` },
   };
@@ -44,6 +45,13 @@ export default async function StorePage({ params }) {
         <h2>{s.shortName} 매장 정보</h2>
         <StoreInfoTable store={s} />
       </section>
+
+      {s.nearbyText && (
+        <section>
+          <h2>{s.nearby.slice(0, 2).join(", ")} 근처 전자담배 매장</h2>
+          <p>{s.nearbyText}</p>
+        </section>
+      )}
 
       <section>
         <h2>{s.name} 찾아오는 길</h2>
