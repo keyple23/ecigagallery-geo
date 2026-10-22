@@ -115,3 +115,9 @@ table.info { border-top: 1px solid var(--line); }
 .gnb .dd-menu::before { content: ""; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
 .gnb .dd-menu li a { display: block; padding: 7px 14px; white-space: nowrap; color: #374151; }
 .gnb .dd-menu li a:hover { background: var(--accent-soft); color: var(--accent); text-decoration: none; }
+
+/* 상단 메뉴 줄 단위 배치 */
+.gnb-rows .gnb { margin-top: 6px; }
+.gnb-rows .gnb + .gnb { margin-top: 4px; }
+.gnb a.grp { color: var(--accent); font-weight: 700; text-decoration: none; }
+.gnb .sep { color: #d1d5db; }

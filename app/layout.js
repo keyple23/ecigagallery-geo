@@ -40,24 +40,25 @@ function NavLinks({ withRegions = false }) {
   );
 }
 
-// 상단 메뉴: 매장 링크 + 가이드 드롭다운 + 매장 정보 글
+// 상단 메뉴: 줄 단위 (매장 / 가이드 / 매장 정보 글)
 function HeaderNav() {
   return (
-    <ul className="gnb">
-      <li className="grp">매장</li>
-      {stores.map((s) => (
-        <li key={s.slug}><Link href={storePath(s)}>{s.navLabel || s.shortName}</Link></li>
-      ))}
-      <li className="dd">
-        <Link href="/guide/" className="grp dd-btn" aria-haspopup="true">가이드</Link>
-        <ul className="dd-menu">
-          {getGuides().map((g) => (
-            <li key={g.slug}><Link href={`/guide/${g.slug}/`}>{g.navTitle}</Link></li>
-          ))}
-        </ul>
-      </li>
-      <li><Link href="/articles/" className="hl">매장 정보 글</Link></li>
-    </ul>
+    <div className="gnb-rows">
+      <ul className="gnb">
+        <li className="grp">매장</li>
+        {stores.map((s) => (
+          <li key={s.slug}><Link href={storePath(s)}>{s.navLabel || s.shortName}</Link></li>
+        ))}
+      </ul>
+      <ul className="gnb">
+        <li><Link href="/guide/" className="grp">가이드</Link></li>
+        {getGuides().map((g) => (
+          <li key={g.slug}><Link href={`/guide/${g.slug}/`}>{g.navTitle}</Link></li>
+        ))}
+        <li className="sep" aria-hidden="true">|</li>
+        <li><Link href="/articles/" className="hl">매장 정보 글</Link></li>
+      </ul>
+    </div>
   );
 }
 
