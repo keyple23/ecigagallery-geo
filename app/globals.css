@@ -103,3 +103,15 @@ table.info { border-top: 1px solid var(--line); }
 .fsns { display: flex !important; flex-wrap: wrap; gap: 4px 10px; margin-top: 4px; }
 .fstores address strong a { color: var(--fg); text-decoration: none; }
 .dir-table td:last-child { white-space: nowrap; }
+
+/* 상단 가이드 드롭다운 */
+.gnb { align-items: center; }
+.gnb a.hl, .fnav a.hl { color: var(--accent); font-weight: 700; }
+.gnb .dd { position: relative; }
+.gnb .dd-btn { color: var(--accent); font-weight: 700; text-decoration: none; }
+.gnb .dd-btn::after { content: "▾"; font-size: 11px; margin-left: 3px; }
+.gnb .dd-menu { display: none; position: absolute; left: -12px; top: 100%; z-index: 20; list-style: none; margin: 0; padding: 6px 0; min-width: 170px; background: #fff; border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+.gnb .dd:hover .dd-menu, .gnb .dd:focus-within .dd-menu { display: block; }
+.gnb .dd-menu::before { content: ""; position: absolute; top: -8px; left: 0; right: 0; height: 8px; }
+.gnb .dd-menu li a { display: block; padding: 7px 14px; white-space: nowrap; color: #374151; }
+.gnb .dd-menu li a:hover { background: var(--accent-soft); color: var(--accent); text-decoration: none; }

@@ -35,9 +35,29 @@ function NavLinks({ withRegions = false }) {
       {getGuides().map((g) => (
         <li key={g.slug}><Link href={`/guide/${g.slug}/`}>{g.navTitle}</Link></li>
       ))}
-      <li className="grp">정보</li>
-      <li><Link href="/articles/">매장 정보 글</Link></li>
+      <li><Link href="/articles/" className="hl">매장 정보 글</Link></li>
     </>
+  );
+}
+
+// 상단 메뉴: 매장 링크 + 가이드 드롭다운 + 매장 정보 글
+function HeaderNav() {
+  return (
+    <ul className="gnb">
+      <li className="grp">매장</li>
+      {stores.map((s) => (
+        <li key={s.slug}><Link href={storePath(s)}>{s.navLabel || s.shortName}</Link></li>
+      ))}
+      <li className="dd">
+        <Link href="/guide/" className="grp dd-btn" aria-haspopup="true">가이드</Link>
+        <ul className="dd-menu">
+          {getGuides().map((g) => (
+            <li key={g.slug}><Link href={`/guide/${g.slug}/`}>{g.navTitle}</Link></li>
+          ))}
+        </ul>
+      </li>
+      <li><Link href="/articles/" className="hl">매장 정보 글</Link></li>
+    </ul>
   );
 }
 
@@ -49,7 +69,7 @@ export default function RootLayout({ children }) {
         <header className="top">
           <div className="wrap">
             <Link href="/" className="logo">{site.brand} <span>매장</span></Link>
-            <nav aria-label="주요 메뉴"><ul className="gnb"><NavLinks /></ul></nav>
+            <nav aria-label="주요 메뉴"><HeaderNav /></nav>
           </div>
         </header>
         <main id="main" className="wrap">{children}</main>
