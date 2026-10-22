@@ -1,4 +1,4 @@
-import { site, getArticles, stores, abs } from "@/lib/data";
+import { site, getArticles, getGuides, stores, abs } from "@/lib/data";
 
 export const dynamic = "force-static";
 
@@ -7,6 +7,7 @@ const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/
 export function GET() {
   const items = [
     ...getArticles().map((a) => ({ title: a.title, link: abs(`/articles/${a.slug}/`), desc: a.description, date: a.date })),
+    ...getGuides().map((g) => ({ title: g.title, link: abs(`/guide/${g.slug}/`), desc: g.description, date: g.date })),
     ...stores.map((s) => ({ title: `${s.name} 매장 안내`, link: abs(`/stores/${s.slug}/`), desc: s.intro[0], date: "" })),
   ];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

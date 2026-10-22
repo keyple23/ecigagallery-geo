@@ -1,7 +1,8 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { site, stores, getStore, articlesForStore } from "@/lib/data";
+import { site, stores, getStore, articlesForStore, getGuides } from "@/lib/data";
 import { storeSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
-import { JsonLd, Breadcrumb, StoreInfoTable, StoreLinks, Faq, ArticleList } from "@/components/ui";
+import { JsonLd, Breadcrumb, StoreInfoTable, StoreLinks, Faq, ArticleList, StoreTable, SourceNote } from "@/components/ui";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -28,14 +29,20 @@ export default async function StorePage({ params }) {
   const { slug } = await params;
   const s = getStore(slug);
   if (!s) notFound();
-  const crumbs = [{ name: "홈", path: "/" }, { name: s.name, path: `/stores/${s.slug}/` }];
+  const crumbs = [
+    { name: "홈", path: "/" },
+    { name: "안산시", path: "/" },
+    { name: s.address.district, path: `/#${s.address.district}` },
+    { name: s.name, path: `/stores/${s.slug}/` },
+  ];
   const articles = articlesForStore(s.slug);
 
   return (
     <>
-      <JsonLd data={[storeSchema(s), faqSchema(s.faq), breadcrumbSchema(crumbs)]} />
+      <JsonLd data={[storeSchema(s), faqSchema(s.faq), breadcrumbSchema(crumbs.filter((c, i) => i !== 2))]} />
       <Breadcrumb items={crumbs} />
       <h1>{pageTitle(s)}</h1>
+      <SourceNote />
       <div className="prose">
         {s.intro.map((p, i) => <p key={i}>{p}</p>)}
       </div>
@@ -63,11 +70,24 @@ export default async function StorePage({ params }) {
         <ul className="dir">{s.onlineOrder.notes.map((n) => <li key={n}>{n}</li>)}</ul>
       </section>
 
+      <section>
+        <h2>방문 전 읽어보면 좋은 가이드</h2>
+        <ul className="dir">
+          {getGuides().map((g) => <li key={g.slug}><Link href={`/guide/${g.slug}/`}>{g.title}</Link></li>)}
+        </ul>
+      </section>
+
       <Faq items={s.faq} title={`${s.shortName} 자주 묻는 질문`} />
 
       <section>
         <h2>{s.shortName} 관련 글</h2>
         <ArticleList articles={articles} />
+      </section>
+
+      <section>
+        <h2>안산의 다른 전자담배 매장</h2>
+        <StoreTable current={s.slug} />
+        <p><Link href="/">안산 전자담배 매장 전체 보기</Link></p>
       </section>
     </>
   );
