@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
         <a href="#main" className="skip">본문 바로가기</a>
         <header className="top">
           <div className="wrap">
-            <Link href="/" className="logo">{site.mainKeyword} <span>가이드</span></Link>
+            <Link href="/" className="logo">{site.brand} <span>매장</span></Link>
             <nav aria-label="주요 메뉴"><ul className="gnb"><NavLinks /></ul></nav>
           </div>
         </header>
