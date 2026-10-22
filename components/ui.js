@@ -80,6 +80,8 @@ export function StoreLinks({ store }) {
       <a className="btn primary" href={store.placeUrl} target="_blank" rel="noopener">네이버 지도에서 보기</a>
       <a className="btn" href={telHref(store.phone)}>전화하기</a>
       <a className="btn" href={store.blogUrl} target="_blank" rel="noopener">매장 블로그</a>
+      {store.instagramUrl && <a className="btn" href={store.instagramUrl} target="_blank" rel="noopener">인스타그램</a>}
+      {store.talktalkUrl && <a className="btn" href={store.talktalkUrl} target="_blank" rel="noopener">네이버 톡톡 문의</a>}
     </div>
   );
 }
