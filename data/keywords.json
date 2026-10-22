@@ -1,0 +1,13 @@
+{
+  "main": "안산 전자담배",
+  "targets": [
+    { "keyword": "안산 전자담배", "page": "/", "priority": 1 },
+    { "keyword": "안산 전자담배 매장", "page": "/", "priority": 1 },
+    { "keyword": "안산 중앙역 전자담배", "page": "/stores/ansan-bonjeom/", "priority": 2 },
+    { "keyword": "중앙동 전자담배", "page": "/stores/ansan-jungang/", "priority": 2 },
+    { "keyword": "고잔동 전자담배", "page": "/stores/ansan-bonjeom/", "priority": 3 },
+    { "keyword": "상록수역 전자담배", "page": "/stores/ansan-sangnok/", "priority": 2 },
+    { "keyword": "상록수 전자담배", "page": "/stores/ansan-sangnok/", "priority": 3 },
+    { "keyword": "안산 액상 전자담배", "page": "", "priority": 3 }
+  ]
+}
