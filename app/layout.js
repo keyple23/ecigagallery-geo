@@ -1,6 +1,6 @@
 import "./globals.css";
 import Link from "next/link";
-import { site, stores, getGuides, SITE_URL, telHref, storePath } from "@/lib/data";
+import { site, stores, regions, regionPath, getGuides, SITE_URL, telHref, storePath, stationFull, brands } from "@/lib/data";
 
 const verificationOther = {};
 if (site.naverVerification) verificationOther["naver-site-verification"] = site.naverVerification;
@@ -19,19 +19,24 @@ export const metadata = {
 
 export const viewport = { themeColor: "#0F766E" };
 
-function NavLinks() {
+// 상단은 지역만, 푸터는 매장까지 전부 노출 (매장이 늘어도 상단 메뉴가 길어지지 않게)
+function NavLinks({ withStores = false }) {
   return (
     <>
-      <li className="grp">매장</li>
-      {stores.map((s) => (
-        <li key={s.slug}><Link href={storePath(s)}>{s.shortName}</Link></li>
+      <li className="grp">지역</li>
+      {regions.map((r) => (
+        <li key={r.slug}><Link href={regionPath(r)}>{r.short}</Link></li>
+      ))}
+      {withStores && <li className="grp">매장</li>}
+      {withStores && stores.map((s) => (
+        <li key={s.slug}><Link href={storePath(s)}>{s.navLabel || s.shortName}</Link></li>
       ))}
       <li className="grp">가이드</li>
       {getGuides().map((g) => (
         <li key={g.slug}><Link href={`/guide/${g.slug}/`}>{g.navTitle}</Link></li>
       ))}
       <li className="grp">정보</li>
-      <li><Link href="/articles/">안산 매장 정보 글</Link></li>
+      <li><Link href="/articles/">매장 정보 글</Link></li>
     </>
   );
 }
@@ -52,15 +57,15 @@ export default function RootLayout({ children }) {
           <div className="wrap">
             <p className="fbrand">{site.brand} 매장소개</p>
             <p className="fabout">
-              {site.brand}는 전자담배 기기와 액상을 판매하는 오프라인 전자담배 매장입니다. 현재 {[...new Set(stores.map((s) => `${s.address.region} ${s.address.city}`))].join(", ")}에서 {stores.map((s) => s.shortName).join(", ")} {stores.length}개 매장을 운영하며,
-              입문용 기기부터 과일·멘솔·디저트·연초 계열 액상까지 상담 후 비교해 구매할 수 있습니다. 모든 매장에서 지역화폐와 지원금(카드형) 결제가 가능합니다.
+              {brands.join("와 ")}는 전자담배 기기와 액상을 판매하는 오프라인 전자담배 매장입니다. 현재 {regions.map((r) => `${r.provinceShort} ${r.city} ${r.stores.map((s) => s.shortName).join("·")}`).join(", ")}까지 {stores.length}개 매장을 운영하며,
+              입문용 기기부터 과일·멘솔·디저트·연초 계열 액상까지 상담 후 비교해 구매할 수 있습니다. 영업시간과 찾아오는 길, 온라인 주문 여부는 매장별 페이지에서 확인할 수 있습니다.
             </p>
             <div className="fstores">
               {stores.map((s) => (
                 <address key={s.slug}>
                   <strong><Link href={storePath(s)}>{s.name}</Link></strong>
                   <span>{s.address.full}</span>
-                  <span>{s.stations[0].line} {s.stations[0].name} {s.stations[0].exit} {s.stations[0].distance}</span>
+                  <span>{stationFull(s.stations[0])}</span>
                   <span>{s.hours.map((h) => `${h.label} ${h.opens}~${h.closes}`).join(" / ")}</span>
                   <span>전화 <a href={telHref(s.phone)}>{s.phone}</a></span>
                   <span className="farea">{`관련 지역: ${s.relatedAreas.join(", ")} 전자담배`}</span>
@@ -75,7 +80,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
             <p className="notice">이 사이트는 {site.brand} 매장 위치와 이용 정보를 안내합니다. 청소년보호법에 따라 청소년에게는 전자담배 기기와 액상을 판매하지 않으며, 구매 시 신분증 확인을 요청할 수 있습니다.</p>
-            <ul className="fnav"><NavLinks /></ul>
+            <ul className="fnav"><NavLinks withStores /></ul>
             <p className="muted">© 2026 {site.brand}</p>
           </div>
         </footer>

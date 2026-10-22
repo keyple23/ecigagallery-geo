@@ -102,3 +102,4 @@ table.info { border-top: 1px solid var(--line); }
 .farea { color: var(--muted); font-size: 12px; margin-top: 2px; }
 .fsns { display: flex !important; flex-wrap: wrap; gap: 4px 10px; margin-top: 4px; }
 .fstores address strong a { color: var(--fg); text-decoration: none; }
+.dir-table td:last-child { white-space: nowrap; }

@@ -1,37 +1,384 @@
 {
-  "main": "안산 전자담배",
+  "main": "전자담배갤러리",
   "note": "volume(월간 검색수)은 네이버 검색광고 키워드도구에서 확인 후 입력. tier 1=메인 지역키, 2=주변 지역·역, 3=속성 롱테일, watch=데이터 확인 후 결정",
   "targets": [
-    { "keyword": "안산 전자담배", "tier": 1, "page": "/", "volume": "" },
-    { "keyword": "안산 전자담배 매장", "tier": 1, "page": "/", "volume": "" },
-    { "keyword": "안산 전자담배 가게", "tier": 1, "page": "/", "volume": "" },
-    { "keyword": "안산 전담", "tier": 1, "page": "/", "volume": "" },
-    { "keyword": "안산 액상 전자담배", "tier": 1, "page": "/", "volume": "" },
-    { "keyword": "안산 전자담배 액상", "tier": 1, "page": "/", "volume": "" },
-    { "keyword": "안산 전자담배 추천", "tier": 1, "page": "/", "volume": "" },
-
-    { "keyword": "안산 중앙역 전자담배", "tier": 2, "page": "/stores/ansan-bonjeom/", "volume": "" },
-    { "keyword": "중앙역 전자담배", "tier": 2, "page": "/stores/ansan-bonjeom/", "volume": "" },
-    { "keyword": "고잔동 전자담배", "tier": 2, "page": "/stores/ansan-bonjeom/", "volume": "" },
-    { "keyword": "고잔역 전자담배", "tier": 2, "page": "/stores/ansan-bonjeom/", "volume": "" },
-    { "keyword": "단원구 전자담배", "tier": 2, "page": "/stores/ansan-bonjeom/", "volume": "" },
-    { "keyword": "중앙동 전자담배", "tier": 2, "page": "/stores/ansan-jungang/", "volume": "" },
-    { "keyword": "안산 중앙동 전자담배", "tier": 2, "page": "/stores/ansan-jungang/", "volume": "" },
-    { "keyword": "상록수역 전자담배", "tier": 2, "page": "/stores/ansan-sangnok/", "volume": "" },
-    { "keyword": "상록수 전자담배", "tier": 2, "page": "/stores/ansan-sangnok/", "volume": "" },
-    { "keyword": "상록구 전자담배", "tier": 2, "page": "/stores/ansan-sangnok/", "volume": "" },
-    { "keyword": "본오동 전자담배", "tier": 2, "page": "/stores/ansan-sangnok/", "volume": "" },
-
-    { "keyword": "안산 전자담배 지역화폐", "tier": 3, "page": "/", "volume": "" },
-    { "keyword": "안산 전자담배 주차", "tier": 3, "page": "/stores/ansan-sangnok/", "volume": "" },
-    { "keyword": "안산 전자담배 온라인 주문", "tier": 3, "page": "/", "volume": "" },
-    { "keyword": "안산 전자담배 입문", "tier": 3, "page": "/articles/ansan-vape-first-buy-checklist/", "volume": "" },
-    { "keyword": "안산 전자담배 영업시간", "tier": 3, "page": "/", "volume": "" },
-
-    { "keyword": "한대앞역 전자담배", "tier": "watch", "page": "", "volume": "" },
-    { "keyword": "안산역 전자담배", "tier": "watch", "page": "", "volume": "" },
-    { "keyword": "초지동 전자담배", "tier": "watch", "page": "", "volume": "" },
-    { "keyword": "호수동 전자담배", "tier": "watch", "page": "", "volume": "" },
-    { "keyword": "선부동 전자담배", "tier": "watch", "page": "", "volume": "" }
+    {
+      "keyword": "전자담배갤러리",
+      "tier": 1,
+      "page": "/",
+      "volume": ""
+    },
+    {
+      "keyword": "전자담배갤러리 매장",
+      "tier": 1,
+      "page": "/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 전자담배",
+      "tier": 1,
+      "page": "/ansan/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 전자담배 매장",
+      "tier": 1,
+      "page": "/ansan/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 전자담배 가게",
+      "tier": 1,
+      "page": "/ansan/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 전담",
+      "tier": 1,
+      "page": "/ansan/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 액상 전자담배",
+      "tier": 1,
+      "page": "/ansan/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 전자담배 액상",
+      "tier": 1,
+      "page": "/ansan/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 전자담배 추천",
+      "tier": 1,
+      "page": "/ansan/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 중앙역 전자담배",
+      "tier": 2,
+      "page": "/stores/ansan-bonjeom/",
+      "volume": ""
+    },
+    {
+      "keyword": "중앙역 전자담배",
+      "tier": 2,
+      "page": "/stores/ansan-bonjeom/",
+      "volume": ""
+    },
+    {
+      "keyword": "고잔동 전자담배",
+      "tier": 2,
+      "page": "/stores/ansan-bonjeom/",
+      "volume": ""
+    },
+    {
+      "keyword": "고잔역 전자담배",
+      "tier": 2,
+      "page": "/stores/ansan-bonjeom/",
+      "volume": ""
+    },
+    {
+      "keyword": "단원구 전자담배",
+      "tier": 2,
+      "page": "/stores/ansan-bonjeom/",
+      "volume": ""
+    },
+    {
+      "keyword": "중앙동 전자담배",
+      "tier": 2,
+      "page": "/stores/ansan-jungang/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 중앙동 전자담배",
+      "tier": 2,
+      "page": "/stores/ansan-jungang/",
+      "volume": ""
+    },
+    {
+      "keyword": "상록수역 전자담배",
+      "tier": 2,
+      "page": "/stores/ansan-sangnok/",
+      "volume": ""
+    },
+    {
+      "keyword": "상록수 전자담배",
+      "tier": 2,
+      "page": "/stores/ansan-sangnok/",
+      "volume": ""
+    },
+    {
+      "keyword": "상록구 전자담배",
+      "tier": 2,
+      "page": "/stores/ansan-sangnok/",
+      "volume": ""
+    },
+    {
+      "keyword": "본오동 전자담배",
+      "tier": 2,
+      "page": "/stores/ansan-sangnok/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 전자담배 주차",
+      "tier": 3,
+      "page": "/stores/ansan-sangnok/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 전자담배 온라인 주문",
+      "tier": 3,
+      "page": "/ansan/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 전자담배 입문",
+      "tier": 3,
+      "page": "/articles/ansan-vape-first-buy-checklist/",
+      "volume": ""
+    },
+    {
+      "keyword": "안산 전자담배 영업시간",
+      "tier": 3,
+      "page": "/ansan/",
+      "volume": ""
+    },
+    {
+      "keyword": "한대앞역 전자담배",
+      "tier": "watch",
+      "page": "",
+      "volume": ""
+    },
+    {
+      "keyword": "안산역 전자담배",
+      "tier": "watch",
+      "page": "",
+      "volume": ""
+    },
+    {
+      "keyword": "초지동 전자담배",
+      "tier": "watch",
+      "page": "",
+      "volume": ""
+    },
+    {
+      "keyword": "호수동 전자담배",
+      "tier": "watch",
+      "page": "",
+      "volume": ""
+    },
+    {
+      "keyword": "선부동 전자담배",
+      "tier": "watch",
+      "page": "",
+      "volume": ""
+    },
+    {
+      "keyword": "안양 전자담배",
+      "tier": 1,
+      "page": "/anyang/",
+      "volume": ""
+    },
+    {
+      "keyword": "안양 전자담배 매장",
+      "tier": 1,
+      "page": "/anyang/",
+      "volume": ""
+    },
+    {
+      "keyword": "안양 전담",
+      "tier": 1,
+      "page": "/anyang/",
+      "volume": ""
+    },
+    {
+      "keyword": "안양 액상 전자담배",
+      "tier": 1,
+      "page": "/anyang/",
+      "volume": ""
+    },
+    {
+      "keyword": "범계 전자담배",
+      "tier": 2,
+      "page": "/stores/anyang-beomgye/",
+      "volume": ""
+    },
+    {
+      "keyword": "범계역 전자담배",
+      "tier": 2,
+      "page": "/stores/anyang-beomgye/",
+      "volume": ""
+    },
+    {
+      "keyword": "평촌 전자담배",
+      "tier": 2,
+      "page": "/stores/anyang-beomgye/",
+      "volume": ""
+    },
+    {
+      "keyword": "안양 동안구 전자담배",
+      "tier": 2,
+      "page": "/stores/anyang-beomgye/",
+      "volume": ""
+    },
+    {
+      "keyword": "군포 전자담배",
+      "tier": 1,
+      "page": "/gunpo/",
+      "volume": ""
+    },
+    {
+      "keyword": "산본 전자담배",
+      "tier": 1,
+      "page": "/stores/gunpo-sanbon/",
+      "volume": ""
+    },
+    {
+      "keyword": "산본역 전자담배",
+      "tier": 2,
+      "page": "/stores/gunpo-sanbon/",
+      "volume": ""
+    },
+    {
+      "keyword": "산본동 전자담배",
+      "tier": 2,
+      "page": "/stores/gunpo-sanbon/",
+      "volume": ""
+    },
+    {
+      "keyword": "수원 전자담배",
+      "tier": 1,
+      "page": "/suwon/",
+      "volume": ""
+    },
+    {
+      "keyword": "인계동 전자담배",
+      "tier": 2,
+      "page": "/stores/suwon-ingye/",
+      "volume": ""
+    },
+    {
+      "keyword": "수원시청역 전자담배",
+      "tier": 2,
+      "page": "/stores/suwon-ingye/",
+      "volume": ""
+    },
+    {
+      "keyword": "팔달구 전자담배",
+      "tier": 2,
+      "page": "/stores/suwon-ingye/",
+      "volume": ""
+    },
+    {
+      "keyword": "나혜석거리 전자담배",
+      "tier": 3,
+      "page": "/stores/suwon-ingye/",
+      "volume": ""
+    },
+    {
+      "keyword": "용인 전자담배",
+      "tier": 1,
+      "page": "/yongin/",
+      "volume": ""
+    },
+    {
+      "keyword": "처인구 전자담배",
+      "tier": 2,
+      "page": "/stores/yongin-cheoin/",
+      "volume": ""
+    },
+    {
+      "keyword": "역북동 전자담배",
+      "tier": 2,
+      "page": "/stores/yongin-cheoin/",
+      "volume": ""
+    },
+    {
+      "keyword": "용인 모드기기",
+      "tier": 3,
+      "page": "/stores/yongin-cheoin/",
+      "volume": ""
+    },
+    {
+      "keyword": "용인 입호흡 기기",
+      "tier": 3,
+      "page": "/stores/yongin-cheoin/",
+      "volume": ""
+    },
+    {
+      "keyword": "원주 전자담배",
+      "tier": 1,
+      "page": "/wonju/",
+      "volume": ""
+    },
+    {
+      "keyword": "원주 터미널 전자담배",
+      "tier": 2,
+      "page": "/stores/wonju/",
+      "volume": ""
+    },
+    {
+      "keyword": "원주 모드기기",
+      "tier": 3,
+      "page": "/stores/wonju/",
+      "volume": ""
+    },
+    {
+      "keyword": "강원도 전자담배",
+      "tier": 3,
+      "page": "/wonju/",
+      "volume": ""
+    },
+    {
+      "keyword": "의정부 전자담배",
+      "tier": 1,
+      "page": "/uijeongbu/",
+      "volume": ""
+    },
+    {
+      "keyword": "의정부역 전자담배",
+      "tier": 2,
+      "page": "/stores/uijeongbu-rodeo/",
+      "volume": ""
+    },
+    {
+      "keyword": "의정부 로데오 전자담배",
+      "tier": 2,
+      "page": "/stores/uijeongbu-rodeo/",
+      "volume": ""
+    },
+    {
+      "keyword": "울산 전자담배",
+      "tier": 1,
+      "page": "/ulsan/",
+      "volume": ""
+    },
+    {
+      "keyword": "울산대 전자담배",
+      "tier": 2,
+      "page": "/stores/ulsan-univ/",
+      "volume": ""
+    },
+    {
+      "keyword": "울산대학교 전자담배",
+      "tier": 2,
+      "page": "/stores/ulsan-univ/",
+      "volume": ""
+    },
+    {
+      "keyword": "무거동 전자담배",
+      "tier": 2,
+      "page": "/stores/ulsan-univ/",
+      "volume": ""
+    },
+    {
+      "keyword": "울산 남구 전자담배",
+      "tier": 2,
+      "page": "/stores/ulsan-univ/",
+      "volume": ""
+    }
   ]
 }

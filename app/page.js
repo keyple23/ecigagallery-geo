@@ -1,46 +1,41 @@
 import Link from "next/link";
-import { site, stores, districts, getArticles, getGuides, storePath } from "@/lib/data";
-import { homeSchema, faqSchema, storeSchema, breadcrumbSchema } from "@/lib/schema";
-import { JsonLd, Faq, PostList, StoreTable, SourceNote, Breadcrumb } from "@/components/ui";
+import { site, stores, regions, regionPath, getArticles, getGuides, brands } from "@/lib/data";
+import { homeSchema, faqSchema, storeSchema } from "@/lib/schema";
+import { JsonLd, Faq, PostList, StoreTable, SourceNote } from "@/components/ui";
 
-const commonFaq = [
-  { q: "안산에 전자담배갤러리 매장은 몇 곳인가요?", a: "단원구에 본점(안산전자담배갤러리, 중앙역 2번 출구)과 중앙점(대동조이월드 1층), 상록구에 상록점(상록수역 3번 출구)까지 모두 3곳입니다." },
-  { q: "세 매장 모두 지역화폐를 쓸 수 있나요?", a: "네, 세 매장 모두 지역화폐와 지원금(카드형) 결제가 가능합니다." },
-  { q: "주차가 편한 매장은 어디인가요?", a: "상록점이 공영주차장 옆 건물 1층에 있어 차량 방문이 가장 편합니다." },
-  { q: "온라인 주문도 되나요?", a: "상록점과 중앙점은 첫 이용 시 본인 인증 1회 후 온라인 주문이 가능하고, 평일 오후 4시 이전 주문은 당일 출고됩니다. 본점은 매장에 문의해 주세요." },
-  { q: "늦게까지 여는 매장은 어디인가요?", a: "상록점과 중앙점은 금요일부터 일요일까지 22:30까지 영업합니다. 본점은 매일 22:00에 영업을 마칩니다." },
-];
-
-const crumbs = [{ name: "홈", path: "/" }, { name: "경기도", path: "" }, { name: "안산시", path: "/" }];
+export const metadata = { alternates: { canonical: "/" } };
 
 export default function Home() {
+  const regionNames = regions.map((r) => r.short).join("·");
+  const onlineStores = stores.filter((s) => s.onlineOrder.available).map((s) => s.navLabel);
+  const faq = [
+    { q: "전자담배갤러리 매장은 어디에 있나요?", a: `현재 ${regions.map((r) => `${r.city} ${r.stores.length}곳(${r.stores.map((s) => s.shortName).join(", ")})`).join(", ")}에서 운영하고 있습니다.` },
+    { q: "온라인 주문도 되나요?", a: onlineStores.length ? `${onlineStores.join(", ")}은 첫 이용 시 본인 인증 1회 후 온라인 주문이 가능합니다. 다른 매장은 각 매장에 문의해 주세요.` : "매장별로 다르니 각 매장에 문의해 주세요." },
+    { q: "가까운 매장은 어떻게 찾나요?", a: "아래 지역별 매장 표에서 지역을 고르면 역 출구와 거리, 영업시간을 매장별로 비교할 수 있습니다." },
+  ];
+
   return (
     <>
-      <JsonLd data={[homeSchema(), ...stores.map(storeSchema), faqSchema(commonFaq), breadcrumbSchema([{ name: "홈", path: "/" }, { name: "안산시", path: "/" }])]} />
-      <Breadcrumb items={crumbs} />
-      <h1>안산 전자담배 매장 위치·영업시간 정리 (경기 안산시)</h1>
+      <JsonLd data={[homeSchema(), ...stores.map(storeSchema), faqSchema(faq)]} />
+      <h1>{site.brand} 매장 안내: 지역별 전자담배 매장 위치와 영업시간</h1>
       <p className="lead">
-        {site.mainKeyword} 매장을 찾는 분을 위해 안산시 단원구와 상록구에 있는 전자담배갤러리 매장 {stores.length}곳의 주소, 가까운 역 출구, 영업시간을 한 표로 정리했습니다.
-        안산 전담 가게나 액상 전자담배 매장을 찾는 분도 아래 목록에서 가까운 곳을 고르면 됩니다.
+        {brands.join("와 ")}는 전자담배 기기와 액상을 판매하는 오프라인 전자담배 매장입니다. 현재 {regions.map((r) => r.short).join(", ")}에서 {stores.length}개 매장을 운영하며,
+        매장마다 주소, 가까운 역 출구, 영업시간, 찾아오는 길을 정리했습니다.
       </p>
       <SourceNote />
 
       <section>
-        <h2>안산 전자담배 매장 목록</h2>
-        <StoreTable />
-      </section>
-
-      <section>
-        <h2>안산 구별 전자담배 매장</h2>
+        <h2>지역별 전자담배갤러리 매장</h2>
         <div className="tablewrap">
           <table className="dir-table">
-            <thead><tr><th>구</th><th>매장</th><th>매장 수</th></tr></thead>
+            <thead><tr><th>지역</th><th>매장</th><th>매장 수</th><th>바로가기</th></tr></thead>
             <tbody>
-              {districts.map((d) => (
-                <tr key={d.name} id={d.name}>
-                  <td>안산시 {d.name}</td>
-                  <td>{d.stores.map((s, i) => <span key={s.slug}>{i > 0 && ", "}<Link href={storePath(s)}>{s.name}</Link></span>)}</td>
-                  <td>{d.stores.length}곳</td>
+              {regions.map((r) => (
+                <tr key={r.slug}>
+                  <td>{r.province} {r.city}</td>
+                  <td>{r.stores.map((s) => s.shortName).join(", ")}</td>
+                  <td>{r.stores.length}곳</td>
+                  <td><Link href={regionPath(r)}>{r.keyword} 매장 보기</Link></td>
                 </tr>
               ))}
             </tbody>
@@ -49,21 +44,8 @@ export default function Home() {
       </section>
 
       <section>
-        <h2>안산 지역·역별 가까운 전자담배 매장</h2>
-        <div className="tablewrap">
-          <table className="dir-table">
-            <thead>
-              <tr><th>지역·역</th><th>가까운 매장</th><th>참고</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>중앙역 2번 출구, 고잔역 방향</td><td><Link href="/stores/ansan-bonjeom/">본점</Link></td><td>중앙역 2번 출구 315m</td></tr>
-              <tr><td>고잔동, 안산 단원구</td><td><Link href="/stores/ansan-bonjeom/">본점</Link>, <Link href="/stores/ansan-jungang/">중앙점</Link></td><td>두 매장 모두 단원구</td></tr>
-              <tr><td>중앙역 1번 출구, 중앙동</td><td><Link href="/stores/ansan-jungang/">중앙점</Link></td><td>롯데시네마 센트럴락 건물 1층</td></tr>
-              <tr><td>상록수역, 본오동</td><td><Link href="/stores/ansan-sangnok/">상록점</Link></td><td>상록수역 3번 출구 151m</td></tr>
-              <tr><td>상록구, 차량 방문</td><td><Link href="/stores/ansan-sangnok/">상록점</Link></td><td>공영주차장 옆 건물</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <h2>전체 매장 목록</h2>
+        <StoreTable />
       </section>
 
       <section>
@@ -84,15 +66,15 @@ export default function Home() {
       </section>
 
       <section>
-        <h2>안산 매장 정보 글</h2>
+        <h2>매장 정보 글</h2>
         <PostList items={getArticles().slice(0, 6)} />
       </section>
 
-      <Faq items={commonFaq} />
+      <Faq items={faq} />
 
       <section className="method">
         <h2>정보 기준 안내</h2>
-        <p>이 페이지의 매장 정보는 각 매장의 네이버 플레이스 등록 정보와 매장에서 제공한 자료를 기준으로 정리했습니다. 정보가 바뀌면 기준일과 함께 갱신합니다.</p>
+        <p>이 사이트의 매장 정보는 각 매장의 네이버 플레이스 등록 정보와 매장에서 제공한 자료를 기준으로 정리했습니다. 정보가 바뀌면 기준일과 함께 갱신합니다.</p>
       </section>
     </>
   );

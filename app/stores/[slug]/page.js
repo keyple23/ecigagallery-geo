@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { site, stores, getStore, articlesForStore, getGuides } from "@/lib/data";
+import { site, stores, getStore, articlesForStore, getGuides, regionOf, regionPath, stationShort } from "@/lib/data";
 import { storeSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
 import { JsonLd, Breadcrumb, StoreInfoTable, StoreLinks, Faq, ArticleList, StoreTable, SourceNote } from "@/components/ui";
 
@@ -9,13 +9,13 @@ export function generateStaticParams() {
   return stores.map((s) => ({ slug: s.slug }));
 }
 
-const pageTitle = (s) => `${s.name}: ${site.mainKeyword} ${s.areaLabel} 매장`;
+const pageTitle = (s) => `${s.name}: ${s.keyword} ${s.areaLabel} 매장`;
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const s = getStore(slug);
   if (!s) return {};
-  const description = `${s.name} 위치(${s.address.full}), ${s.stations[0].name} ${s.stations[0].exit} 가는 길, 영업시간, 전화번호, 결제·온라인 주문 안내.`;
+  const description = `${s.name} 위치(${s.address.full}), ${stationShort(s.stations[0])} 가는 길, 영업시간, 전화번호, 온라인 주문 안내.`;
   return {
     title: { absolute: `${pageTitle(s)} | ${site.siteShort}` },
     description,
@@ -29,17 +29,18 @@ export default async function StorePage({ params }) {
   const { slug } = await params;
   const s = getStore(slug);
   if (!s) notFound();
+  const r = regionOf(s);
   const crumbs = [
     { name: "홈", path: "/" },
-    { name: "안산시", path: "/" },
-    { name: s.address.district, path: `/#${s.address.district}` },
+    { name: r.city, path: regionPath(r) },
+    ...(s.address.district ? [{ name: s.address.district, path: `${regionPath(r)}#${s.address.district}` }] : []),
     { name: s.name, path: `/stores/${s.slug}/` },
   ];
   const articles = articlesForStore(s.slug);
 
   return (
     <>
-      <JsonLd data={[storeSchema(s), faqSchema(s.faq), breadcrumbSchema(crumbs.filter((c, i) => i !== 2))]} />
+      <JsonLd data={[storeSchema(s), faqSchema(s.faq), breadcrumbSchema(crumbs.filter((c) => !c.path.includes("#")))]} />
       <Breadcrumb items={crumbs} />
       <h1>{pageTitle(s)}</h1>
       <SourceNote />
@@ -79,15 +80,17 @@ export default async function StorePage({ params }) {
 
       <Faq items={s.faq} title={`${s.shortName} 자주 묻는 질문`} />
 
-      <section>
-        <h2>{s.shortName} 관련 글</h2>
-        <ArticleList articles={articles} />
-      </section>
+      {articles.length > 0 && (
+        <section>
+          <h2>{s.shortName} 관련 글</h2>
+          <ArticleList articles={articles} />
+        </section>
+      )}
 
       <section>
-        <h2>안산의 다른 전자담배 매장</h2>
-        <StoreTable current={s.slug} />
-        <p><Link href="/">안산 전자담배 매장 전체 보기</Link></p>
+        <h2>{r.short} 지역 매장</h2>
+        <StoreTable list={r.stores} current={s.slug} />
+        <p><Link href={regionPath(r)}>{r.keyword} 매장 전체 보기</Link> · <Link href="/">전체 지역 매장 보기</Link></p>
       </section>
     </>
   );

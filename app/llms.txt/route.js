@@ -1,4 +1,4 @@
-import { site, stores, getArticles, getGuides, abs, hoursLines } from "@/lib/data";
+import { site, stores, regions, getArticles, getGuides, abs, hoursLines, stationFull, paymentText } from "@/lib/data";
 
 export const dynamic = "force-static";
 
@@ -8,9 +8,12 @@ export function GET() {
     "",
     `> ${site.description}`,
     "",
+    "## 지역",
+    ...regions.map((r) => `- [${r.keyword} 매장](${abs(`/${r.slug}/`)}): ${r.province} ${r.city} ${r.stores.length}곳 (${r.stores.map((s) => s.name).join(", ")})`),
+    "",
     "## 매장",
     ...stores.flatMap((s) => [
-      `- [${s.name}](${abs(`/stores/${s.slug}/`)}): ${s.address.full}. ${s.stations[0].line} ${s.stations[0].name} ${s.stations[0].exit} ${s.stations[0].distance}. 영업시간 ${hoursLines(s).join(", ")}. 전화 ${s.phone}. 결제 ${s.payment.join(", ")}. 관련 지역 ${(s.relatedAreas || []).join(", ")}. 채널 ${[["네이버 지도", s.placeUrl], ["블로그", s.blogUrl], ["인스타그램", s.instagramUrl], ["톡톡", s.talktalkUrl]].filter((c) => c[1]).map((c) => `${c[0]} ${c[1]}`).join(", ")}.`,
+      `- [${s.name}](${abs(`/stores/${s.slug}/`)}): ${s.address.full}. ${stationFull(s.stations[0])}. 영업시간 ${hoursLines(s).join(", ")}. 전화 ${s.phone}.${s.payment?.length ? ` 결제 ${paymentText(s)}.` : ""} 관련 지역 ${(s.relatedAreas || []).join(", ")}. 채널 ${[["네이버 지도", s.placeUrl], ["블로그", s.blogUrl], ["인스타그램", s.instagramUrl], ["톡톡", s.talktalkUrl]].filter((c) => c[1]).map((c) => `${c[0]} ${c[1]}`).join(", ")}.`,
     ]),
     "",
     "## 가이드",

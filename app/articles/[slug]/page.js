@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { site, getArticles, getArticle, getStore } from "@/lib/data";
+import { site, getArticles, getArticle, getStore, regionOf, regionPath } from "@/lib/data";
 import { articleSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
 import { JsonLd, Breadcrumb, StoreInfoTable, StoreLinks, Faq } from "@/components/ui";
 
@@ -58,7 +58,7 @@ export default async function ArticlePage({ params }) {
         </section>
       ))}
 
-      <p><Link href="/">{site.mainKeyword} 매장 3곳 비교 보기</Link></p>
+      {first && <p><Link href={regionPath(regionOf(first))}>{regionOf(first).keyword} 매장 비교 보기</Link></p>}
     </>
   );
 }

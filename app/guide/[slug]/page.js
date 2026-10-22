@@ -56,8 +56,8 @@ export default async function GuidePage({ params }) {
       <Faq items={g.faq} />
 
       <section>
-        <h2>안산에서 직접 비교해 보려면</h2>
-        <p>설명만으로 고르기 어렵다면 매장에서 기기와 액상을 직접 보고 상담받는 편이 빠릅니다. 안산 전자담배갤러리 매장 3곳은 아래와 같습니다.</p>
+        <h2>매장에서 직접 비교해 보려면</h2>
+        <p>설명만으로 고르기 어렵다면 매장에서 기기와 액상을 직접 보고 상담받는 편이 빠릅니다. 지역별 매장은 아래와 같습니다.</p>
         <StoreTable />
       </section>
 
