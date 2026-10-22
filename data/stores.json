@@ -115,7 +115,7 @@
         "고잔역"
       ],
       "region": "ansan",
-      "navLabel": "안산 본점",
+      "navLabel": "안산본점",
       "brand": "전자담배갤러리"
     },
     {
@@ -232,7 +232,7 @@
         "본오동"
       ],
       "region": "ansan",
-      "navLabel": "안산 상록점",
+      "navLabel": "안산상록",
       "brand": "전자담배갤러리"
     },
     {
@@ -353,13 +353,13 @@
         "대동조이월드"
       ],
       "region": "ansan",
-      "navLabel": "안산 중앙점",
+      "navLabel": "안산중앙",
       "brand": "전자담배갤러리"
     },
     {
       "slug": "anyang-beomgye",
       "region": "anyang",
-      "navLabel": "안양 범계점",
+      "navLabel": "안양범계",
       "name": "전자담배갤러리 안양범계점",
       "alternateName": "전자담배갤러리 범계점",
       "shortName": "범계점",
@@ -473,7 +473,7 @@
     {
       "slug": "gunpo-sanbon",
       "region": "gunpo",
-      "navLabel": "군포 산본점",
+      "navLabel": "군포산본",
       "brand": "전자담배갤러리",
       "name": "전자담배갤러리 군포산본점",
       "alternateName": "전자담배갤러리 산본점",
@@ -570,7 +570,7 @@
     {
       "slug": "suwon-ingye",
       "region": "suwon",
-      "navLabel": "수원 인계점",
+      "navLabel": "수원인계",
       "brand": "투엑스전자담배",
       "name": "투엑스전자담배 수원인계점",
       "alternateName": "투엑스 전자담배 수원인계점",
@@ -689,7 +689,7 @@
     {
       "slug": "yongin-cheoin",
       "region": "yongin",
-      "navLabel": "용인점",
+      "navLabel": "용인",
       "brand": "전자담배갤러리",
       "name": "용인전자담배갤러리",
       "alternateName": "전자담배갤러리 용인점",
@@ -803,7 +803,7 @@
     {
       "slug": "wonju",
       "region": "wonju",
-      "navLabel": "원주점",
+      "navLabel": "원주",
       "brand": "전자담배갤러리",
       "name": "원주전자담배갤러리",
       "alternateName": "전자담배갤러리 원주점",
@@ -909,7 +909,7 @@
     {
       "slug": "uijeongbu-rodeo",
       "region": "uijeongbu",
-      "navLabel": "의정부 로데오점",
+      "navLabel": "의정부로데오",
       "brand": "전자담배갤러리",
       "name": "전자담배갤러리 의정부로데오점",
       "alternateName": "전자담배갤러리 의정부점",
@@ -1015,7 +1015,7 @@
     {
       "slug": "ulsan-univ",
       "region": "ulsan",
-      "navLabel": "울산대점",
+      "navLabel": "울산대",
       "brand": "투엑스전자담배",
       "name": "투엑스전자담배 울산대점",
       "alternateName": "투엑스 전자담배 울산대점",

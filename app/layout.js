@@ -19,16 +19,16 @@ export const metadata = {
 
 export const viewport = { themeColor: "#0F766E" };
 
-// 상단은 지역만, 푸터는 매장까지 전부 노출 (매장이 늘어도 상단 메뉴가 길어지지 않게)
-function NavLinks({ withStores = false }) {
+// 상단은 매장별 바로가기, 푸터는 지역 페이지 + 매장 전체
+function NavLinks({ withRegions = false }) {
   return (
     <>
-      <li className="grp">지역</li>
-      {regions.map((r) => (
+      {withRegions && <li className="grp">지역</li>}
+      {withRegions && regions.map((r) => (
         <li key={r.slug}><Link href={regionPath(r)}>{r.short}</Link></li>
       ))}
-      {withStores && <li className="grp">매장</li>}
-      {withStores && stores.map((s) => (
+      <li className="grp">매장</li>
+      {stores.map((s) => (
         <li key={s.slug}><Link href={storePath(s)}>{s.navLabel || s.shortName}</Link></li>
       ))}
       <li className="grp">가이드</li>
@@ -80,7 +80,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
             <p className="notice">이 사이트는 {site.brand} 매장 위치와 이용 정보를 안내합니다. 청소년보호법에 따라 청소년에게는 전자담배 기기와 액상을 판매하지 않으며, 구매 시 신분증 확인을 요청할 수 있습니다.</p>
-            <ul className="fnav"><NavLinks withStores /></ul>
+            <ul className="fnav"><NavLinks withRegions /></ul>
             <p className="muted">© 2026 {site.brand}</p>
           </div>
         </footer>
