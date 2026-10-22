@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
         <main id="main" className="wrap">{children}</main>
         <footer className="foot">
           <div className="wrap">
-            <p className="fbrand">{site.brand} 안산 · {site.siteShort}</p>
+            <p className="fbrand">{site.brand} 매장소개</p>
             <p className="notice">이 사이트는 매장 위치와 이용 정보를 안내합니다. 청소년보호법에 따라 청소년에게는 전자담배 기기와 액상을 판매하지 않으며, 구매 시 신분증 확인을 요청할 수 있습니다.</p>
             <div className="fstores">
               {stores.map((s) => (
@@ -62,7 +62,7 @@ export default function RootLayout({ children }) {
               ))}
             </div>
             <ul className="fnav"><NavLinks /></ul>
-            <p className="muted">© 2026 {site.brand} 안산</p>
+            <p className="muted">© 2026 {site.brand}</p>
           </div>
         </footer>
       </body>
